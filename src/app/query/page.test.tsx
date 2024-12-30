@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import { render, screen, waitFor } from "@testing-library/react";
-import Query, { noEmptyString } from "./page";
+import { render, screen } from "@testing-library/react";
 import { FetchDataComponent } from "../components/fetch";
+import { Query, noEmptyString } from "./page";
 
 describe("Query Page Test", () => {
   it("should render query page", () => {

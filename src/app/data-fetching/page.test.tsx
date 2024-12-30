@@ -1,10 +1,10 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
-import DataFetchingComponent from "./page";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { Post } from "../libs/useJSONPlaceholder";
+import DataFetchingComponent from "./page";
 
 const handlers = [
   rest.get("https://jsonplaceholder.typicode.com/posts/1", (req, res, ctx) => {

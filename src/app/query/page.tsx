@@ -11,8 +11,6 @@ const Query: NextPage = () => {
   );
 };
 
-export default Query;
-
 const noEmptyString = (str: string) => {
   if (str === "") {
     throw new Error("빈 문자열이 들어왔습니다.");
@@ -20,3 +18,5 @@ const noEmptyString = (str: string) => {
 
   return str;
 };
+
+export { noEmptyString, Query };
