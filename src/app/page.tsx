@@ -44,7 +44,7 @@ export default function Home() {
 
   const url = process.env.NEXT_PUBLIC_API_URL;
   if (!url) {
-    return <div>{"API URL is not defined."}</div>;
+    throw new Error("API URL is not defined.");
   }
 
   return (
