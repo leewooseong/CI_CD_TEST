@@ -11,12 +11,12 @@ const Query: NextPage = () => {
   );
 };
 
-const noEmptyString = (str: string) => {
-  if (str === "") {
-    throw new Error("빈 문자열이 들어왔습니다.");
-  }
+// const noEmptyString = (str: string) => {
+//   if (str === "") {
+//     throw new Error("빈 문자열이 들어왔습니다.");
+//   }
 
-  return str;
-};
+//   return str;
+// };
 
-export { noEmptyString, Query };
+export default Query;
