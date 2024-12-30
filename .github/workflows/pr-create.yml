@@ -12,22 +12,24 @@ jobs:
         run: echo "pull request is created."
   test-job:
     # 버전별 테스트 방법
+    # strategy & matrix -> 테스트를 여러 버전에서 실행할 수 있도록 설정, matrix는 여러 버전을 동시에 실행할 수 있도록 해줌
     strategy:
       matrix:
         node-version: [18, 20] # node-version은 사용자가 임의로 설정해준 이름, ubuntu-latest에서는 20버전이 기본적으로 설치되어 있음, 그래서 20버전 외의 버전을 사용하려면 추가적으로 명시해줘야 함
-    runs-on: ubuntu-latest
+        os-type: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os-type }}
     needs: print-pr-create
     steps:
-      # 1. 내 github repo 코드를 github cloud server로 전송
-      - name: Get Codes
-        uses: actions/checkout@v4
-
       # 특정 버전의 노드를 yml 파일을 통해서 설치할 수 있다.
       # - actinos/setup-node@v4: https://github.com/actions/setup-node
       - name: Install Nodejs
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
+      # 1. 내 github repo 코드를 github cloud server로 전송
+      - name: Get Codes
+        uses: actions/checkout@v4
 
       # 2. 의존성 파일들 설치
       - name: Install Dependencies
