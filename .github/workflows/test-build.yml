@@ -2,7 +2,17 @@
 # 테스트 및 빌드 수행
 name: Run Test And Build
 # push & workflow_dispatch 이벤트에 대해서만 트리거
-on: [push, workflow_dispatch]
+# - 한 개 또는 배열을 이용해서 여러 개의 이벤트를 등록할 수 있다.
+# - 여러 개의 이벤트를 등록할 경우, 개행을 통해 구분해줄 수도 있다.
+on:
+  # Trigger Event
+  push:
+    # Branch Filtering
+    branches:
+      - develop
+
+  workflow_dispatch:
+
 jobs:
   # 1. 테스트 작업 수행
   test-job:
@@ -45,3 +55,9 @@ jobs:
   # 2. uses: 남이 만들어 놓은 명령어를 입력해야할 때
   #   - 직접 run을 이용해서 다 작성해도 되지만 반복되거나 복잡한 명령어들의 조합 같은 경우 매번 사용하기 어렵거나 작성이 어려운 경우 미리 만들어둔 것을 활용해볼 수 있다.
   #   - 예시: https://github.com/actions/checkout
+
+  # Activity Type & Event Filter
+  # 1. Activity Type: 트리거된 이벤트의 종류, 상태, 결과 등을 나타내는 것
+  #    - 특정 이벤트가 성공했을 때만 다음 작업을 수행하도록 설정할 수 있다.
+  # 2. Event Filter: 이벤트를 좀 더 세분화해서 특정 이벤트만을 필터링하는 것
+  #    - Activity Type이 없는 경우 Event Filter를 사용해서 특정 이벤트만을 필터링할 수 있다.

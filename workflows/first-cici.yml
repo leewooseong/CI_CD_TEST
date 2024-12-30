@@ -5,7 +5,6 @@
 name: First workflow
 # on: 워크플로우가 트리거 될 이벤트를 여기서 정의(github action에서 정의된 이벤트 사용, 커스텀 이벤트는 아마 지원 x)
 # - workflow_dispatch: 수동으로 트리거하는 이벤트
-# - 한개 또는 여러개의 이벤트를 등록할 수 있다.
 # - https://docs.github.com/ko/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
 on: workflow_dispatch
 # 해야할 job 정의
