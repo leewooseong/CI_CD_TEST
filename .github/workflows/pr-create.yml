@@ -1,0 +1,36 @@
+name: After PR Create
+on: pull_request
+jobs:
+  print-pr-create:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR Create
+        run: echo "pull request is created."
+  test-job:
+    runs-on: ubuntu-latest
+    needs: print-pr-create
+    steps:
+      # 1. 내 github repo 코드를 github cloud server로 전송
+      - name: Get Codes
+        uses: actions/checkout@v4
+
+      # 2. 의존성 파일들 설치
+      - name: Install Dependencies
+        run: npm install
+
+      # 3. 테스트 실행
+      - name: Run Test
+        run: npm run test
+  build-job:
+    runs-on: ubuntu-latest
+    # test-job이 성공적으로 끝나야만 build-job이 실행될 수 있도록 설정
+    needs: test-job
+    steps:
+      - name: Get Codes
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run build
+        run: npm run build
