@@ -14,7 +14,7 @@ jobs:
     # 버전별 테스트 방법
     strategy:
       matrix:
-        node-version: [12, 18] # node-version은 사용자가 임의로 설정해준 이름, ubuntu-latest에서는 20버전이 기본적으로 설치되어 있음, 그래서 20버전 외의 버전을 사용하려면 추가적으로 명시해줘야 함
+        node-version: [18, 20] # node-version은 사용자가 임의로 설정해준 이름, ubuntu-latest에서는 20버전이 기본적으로 설치되어 있음, 그래서 20버전 외의 버전을 사용하려면 추가적으로 명시해줘야 함
     runs-on: ubuntu-latest
     needs: print-pr-create
     steps:
