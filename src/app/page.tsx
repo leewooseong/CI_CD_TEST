@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import Form from "./components/form";
+import { List } from "./components/list";
 import { TODO } from "./components/types";
 import {
   fetchAllTodos,
@@ -9,8 +11,6 @@ import {
   saveToCloud,
   saveToStorage,
 } from "./libs/storage-api";
-import { List } from "./components/list";
-import Form from "./components/form";
 
 export default function Home() {
   const [todos, setTodos] = useState<TODO[]>([]);
@@ -41,6 +41,11 @@ export default function Home() {
   useEffect(() => {
     fetchAllTodos().then((items) => setTodos(items));
   }, []);
+
+  const url = process.env.NEXT_PUBLIC_API_URL;
+  if (!url) {
+    return <div>{"API URL is not defined."}</div>;
+  }
 
   return (
     <main className="p-4 rounded-md bg-white shadow-md w-full max-w-md flex flex-col">

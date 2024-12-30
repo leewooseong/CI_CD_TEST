@@ -13,6 +13,7 @@ jobs:
   test-job:
     # 버전별 테스트 방법
     # strategy & matrix -> 테스트를 여러 버전에서 실행할 수 있도록 설정, matrix는 여러 버전을 동시에 실행할 수 있도록 해줌
+    # 현재는 노드 버전 2개 * os 버전 3개 = 6개의 환경에 대해 테스트가 동시에 실행될 수 있도록 설정
     strategy:
       matrix:
         node-version: [18, 20] # node-version은 사용자가 임의로 설정해준 이름, ubuntu-latest에서는 20버전이 기본적으로 설치되어 있음, 그래서 20버전 외의 버전을 사용하려면 추가적으로 명시해줘야 함
