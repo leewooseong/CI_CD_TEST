@@ -1,0 +1,14 @@
+name: Context Object
+on: workflow_dispatch
+jobs:
+  print-context-object:
+    runs-on: ubuntu-latest
+    # toJson: github context object를 정리된 JSON 형태로 변환, github action에서 제공하는 내장 함수
+    steps:
+      - name: Print Context Object
+        run: echo "${{ toJson(github) }}"
+
+  # github context
+  # - github context object는 github actions에서 제공하는 기본적인 정보들을 담고 있는 객체
+  # - github context object는 workflow 파일 내에서 사용할 수 있는 변수들을 제공
+  # -  https://docs.github.com/ko/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs
