@@ -1,0 +1,18 @@
+# main 브랜치에 push를 하면
+# 테스트 및 빌드 수행
+name: Run Test And Build
+# push & workflow_dispatch 이벤트에 대해서만 트리거
+on: [push, workflow_dispatch]
+jobs:
+  # 1. 테스트 수행
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      # 내 github repo 코드를 github cloud server로 전송
+      - name: Get Codes
+        uses: actions/checkout@v4
+  # 2. 빌드 수행
+  # build-job:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name:
