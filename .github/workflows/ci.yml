@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+    branches:
+      - develop
+      - "feat/**"
+
+env:
+  NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL}}
+
+# 1. 테스트
+# 2. PR
+jobs:
+  run-test:
+    name: Run Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Downloads Codes
+        uses: actions/checkout@v4
+
+      - name: Install Deps
+        run: npm Install
+
+      - name: Run Test
+        run: npm run test
+
+      - name: Run Build
+        run: npm run build
