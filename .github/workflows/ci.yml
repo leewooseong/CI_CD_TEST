@@ -26,3 +26,22 @@ jobs:
 
       - name: Run Build
         run: npm run build
+
+  create-pr:
+    needs: run-test
+    name: Create PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Codes
+        uses: actions/checkout@v4
+
+      - name: Creat PR
+        uses: peter-evans/create-pull-request@v7
+        # with: 셋팅 값을 설정할 때 사용하는 키워드
+        with:
+          title: "chore: create pr test" # PR 제목
+          body: "this is a test pr" # PR 내용
+          # merge가 될 브랜치 선택
+          base: main
+          branch: ${{github.ref}}
+          token: ${{ secrets.ACCESS_TOKEN_FOR_CI }}
