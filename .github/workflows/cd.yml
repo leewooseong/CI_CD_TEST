@@ -1,0 +1,37 @@
+# CD: main 브랜치에 merge가 된 순간부터
+
+# main 브랜치에 merge가 되면 유닛 테스트 실행 -> 빌드
+name: CD
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+env:
+  NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL}}
+
+jobs:
+  if-merged:
+    name: Test, Build, Deploy
+    runs-on: ubuntu-latest
+    # 머지가 돼서 closed 될수 있고, 그냥 close해서 closed될 수 있다.
+    # -> if 문으로 이를 merge될 때만 반영되도록 처리
+    # -> if 문에서만 예외적으로 ${{}} 없이 변수를 사용할 수 있다.
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Download Codes
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Test
+        run: npm run test
+
+      - name: Run Build
+        run: npm run build
+
+      - name: Deploy
+        run: curl ${{secrets.DEPLOY_HOOK}}
