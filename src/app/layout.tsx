@@ -1,7 +1,8 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import Providers from "./components/provider";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         <div className="w-full h-screen flex flex-col items-center justify-center">
           <Providers>{children}</Providers>
+          <SpeedInsights />
         </div>
       </body>
     </html>
